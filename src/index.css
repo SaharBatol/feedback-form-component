@@ -93,6 +93,12 @@ body {
   color: black;
 }
 
+.loading-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #spinner {
   border: 0.3rem solid hsl(217, 12%, 63%);
   border-top: 0.3rem solid hsl(199, 82%, 34%);

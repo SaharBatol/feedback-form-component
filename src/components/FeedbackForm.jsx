@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { apiCallSimulation } from "../api";
+import LoadingSpinner from "./LoadingSpinner";
 
 const FeedbackForm = ({ handleClosePopup, setIsSubmitted }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [starRating, setStarRating] = useState(0);
   const [feedbackInput, setFeedbackInput] = useState("");
 
@@ -10,13 +12,15 @@ const FeedbackForm = ({ handleClosePopup, setIsSubmitted }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     apiCallSimulation(starRating, feedbackInput)
       .then(() => {
         setIsSubmitted(true);
+        setIsLoading(false);
       })
       .catch((error) => {
         setError(error);
+        setIsLoading(false);
       });
   };
 
@@ -55,8 +59,11 @@ const FeedbackForm = ({ handleClosePopup, setIsSubmitted }) => {
           >
             CLOSE
           </button>
-          <button className="popup-button-style submit-button" type="submit">
-            SUBMIT
+          <button
+            className="popup-button-style submit-button loading-button"
+            type="submit"
+          >
+            {isLoading ? <LoadingSpinner /> : "SUBMIT"}
           </button>
         </div>
       </form>
