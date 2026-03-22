@@ -92,3 +92,21 @@ body {
   background-color: hsl(217, 12%, 63%);
   color: black;
 }
+
+#spinner {
+  border: 0.3rem solid hsl(217, 12%, 63%);
+  border-top: 0.3rem solid hsl(199, 82%, 34%);
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
