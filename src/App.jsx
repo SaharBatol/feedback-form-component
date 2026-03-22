@@ -1,7 +1,7 @@
-import FeedbackForm from "./components/FeedbackForm";
+import FeedbackFormPopup from "./components/FeedbackFormPopup";
 
 function App() {
-  return <FeedbackForm />;
+  return <FeedbackFormPopup />;
 }
 
 export default App;
