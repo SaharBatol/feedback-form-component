@@ -22,7 +22,10 @@ const FeedbackFormPopup = () => {
           {isSubmitted ? (
             <FormSubmissionSuccess />
           ) : (
-            <FeedbackForm handleClosePopup={handleClosePopup} />
+            <FeedbackForm
+              setIsSubmitted={setIsSubmitted}
+              handleClosePopup={handleClosePopup}
+            />
           )}
         </div>
       </div>

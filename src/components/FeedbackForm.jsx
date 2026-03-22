@@ -1,11 +1,24 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import { apiCallSimulation } from "../api";
 
-const FeedbackForm = ({ handleClosePopup }) => {
+const FeedbackForm = ({ handleClosePopup, setIsSubmitted }) => {
   const [starRating, setStarRating] = useState(0);
   const [feedbackInput, setFeedbackInput] = useState("");
 
   const stars = [1, 2, 3, 4, 5];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    apiCallSimulation(starRating, feedbackInput)
+      .then(() => {
+        setIsSubmitted(true);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
 
   return (
     <>
@@ -13,7 +26,7 @@ const FeedbackForm = ({ handleClosePopup }) => {
       <h2 className="subheading">
         Please let us know how we did by filling in the feedback form below!
       </h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="rating-container">
           {stars.map((number) => (
             <FaStar
