@@ -4,6 +4,7 @@ import FormSubmissionSuccess from "./FormSubmissionSuccess";
 import FeedbackForm from "./FeedbackForm";
 
 const FeedbackFormPopup = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -15,7 +16,11 @@ const FeedbackFormPopup = () => {
     isOpen && (
       <div className="popup-container">
         <div className="popup-content-container">
-          <button className="popup-cross-button" onClick={handleClosePopup}>
+          <button
+            className="popup-cross-button"
+            onClick={handleClosePopup}
+            disabled={isLoading}
+          >
             X
           </button>
 
@@ -25,6 +30,8 @@ const FeedbackFormPopup = () => {
             <FeedbackForm
               setIsSubmitted={setIsSubmitted}
               handleClosePopup={handleClosePopup}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
             />
           )}
         </div>

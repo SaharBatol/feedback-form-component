@@ -3,18 +3,44 @@ import { FaStar } from "react-icons/fa6";
 import { apiCallSimulation } from "../api";
 import LoadingSpinner from "./LoadingSpinner";
 
-const FeedbackForm = ({ handleClosePopup, setIsSubmitted }) => {
-  const [isLoading, setIsLoading] = useState(false);
+const FeedbackForm = ({
+  handleClosePopup,
+  setIsSubmitted,
+  isLoading,
+  setIsLoading,
+}) => {
   const [starRating, setStarRating] = useState(0);
   const [feedbackInput, setFeedbackInput] = useState("");
+  const [errorStar, setErrorStar] = useState("");
+  const [errorField, setErrorField] = useState("");
+  const [error, setError] = useState("");
 
   const stars = [1, 2, 3, 4, 5];
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (starRating === 0 && feedbackInput === "") {
+      setErrorStar("This field is required");
+      setErrorField("This field is required");
+      return;
+    }
+
+    if (starRating === 0) {
+      setErrorStar("This field is required");
+      return;
+    }
+
+    if (feedbackInput === "") {
+      setErrorField("This field is required");
+      return;
+    }
+
     setIsLoading(true);
     apiCallSimulation(starRating, feedbackInput)
       .then(() => {
+        setErrorStar("");
+        setErrorField("");
         setIsSubmitted(true);
         setIsLoading(false);
       })
@@ -36,26 +62,38 @@ const FeedbackForm = ({ handleClosePopup, setIsSubmitted }) => {
             <FaStar
               key={number}
               onClick={() => {
+                if (isLoading) {
+                  return;
+                }
                 setStarRating(number);
+                if (number !== 0) {
+                  setErrorStar("");
+                }
               }}
               color={number <= starRating ? "gold" : "hsl(217, 13%, 40%)"}
               id="star-styling"
             />
           ))}
         </div>
+        {errorStar && <p className="error">{errorStar}</p>}
         <textarea
           id="input-field"
           type="text"
           placeholder="Enter your feedback here"
           onChange={(e) => {
             setFeedbackInput(e.target.value);
+            if (feedbackInput !== "") {
+              setErrorField("");
+            }
           }}
           value={feedbackInput}
         />
+        {errorField && <p className="error">{errorField}</p>}
         <div className="popup-button-container">
           <button
             className="popup-button-style close-button"
             onClick={handleClosePopup}
+            disabled={isLoading}
           >
             CLOSE
           </button>

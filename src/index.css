@@ -129,3 +129,8 @@ body {
   right: 1rem;
   top: 1rem;
 }
+
+.error {
+  color: red;
+  margin-top: 0.5rem;
+}
