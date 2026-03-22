@@ -1,0 +1,94 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Overpass", sans-serif;
+}
+
+body {
+  background-color: hsl(216, 12%, 8%);
+}
+
+.popup-content-container {
+  background-color: hsl(213, 19%, 18%);
+  width: 23rem;
+  padding: 3rem 1.5rem;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.popup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.heading {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subheading {
+  color: hsl(217, 12%, 63%);
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  width: 100%;
+  margin-top: 0.8rem;
+}
+
+#star-styling {
+  font-size: 2.5rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+#input-field {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease;
+  margin-top: 1.5rem;
+}
+
+.popup-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+}
+
+.popup-button-style {
+  width: 9rem;
+  border-radius: 1rem;
+  align-self: center;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 0;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: hsl(199, 82%, 34%);
+  color: white;
+}
+
+.close-button {
+  background-color: hsl(217, 12%, 63%);
+  color: black;
+}
